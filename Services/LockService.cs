@@ -19,9 +19,16 @@ namespace WebApplication2.Services
 
             if (activeLock != null)
             {
-                if ((currentDate - activeLock.LastUpdate).Minutes < 5)
+                var timeDiff = (currentDate - activeLock.LastUpdate);
+                if (timeDiff.TotalMinutes < 5)
                 {
                     hasCurrentLock = true;
+                }
+                else
+                {
+                    activeLock.LastUpdate = currentDate;
+                    activeLock.ReleasedTimeStamp = currentDate;
+                    context.SaveChanges();
                 }
             }
 

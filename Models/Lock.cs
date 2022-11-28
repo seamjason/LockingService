@@ -7,6 +7,8 @@ namespace WebApplication2.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int LockId {get; set; }
+
         public int UserId { get; set; }
 
         public int DeviceId { get; set; }
